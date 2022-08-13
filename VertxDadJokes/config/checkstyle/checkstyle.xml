@@ -163,7 +163,7 @@
         <module name="AvoidStarImport"/>
         <module name="CustomImportOrder">
             <property name="customImportOrderRules"
-                      value="STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE###STATIC"/>
+                      value="THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE###STATIC"/>
         </module>
         <module name="IllegalImport"/>
         <module name="RedundantImport"/>
@@ -198,6 +198,7 @@
                       value="main|build|builder|hashCode|equals|toString|get|get[A-Z](.*)|is|is[A-Z](.*)|has|has[A-Z](.*)|set|set[A-Z](.*)|add|add[A-Z](.*)|remove|remove[A-Z](.*)"/>
             <property name="allowedAnnotations"
                       value="Override, Bean, Test, Mock, Before, After, Before, BeforeAll, AfterAll, BeforeEach, AfterEach, Class, AfterClass"/>
+            <property name="tokens" value="METHOD_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"/>
         </module>
         <module name="NonEmptyAtclauseDescription"/>
         <module name="RequireEmptyLineBeforeBlockTagGroup"/>
@@ -267,7 +268,7 @@
         </module>
         <module name="UncommentedMain">
             <!-- To configure the check to allow the main method for all classes with "Main" name:-->
-            <property name="excludedClasses" value="\.Main$|\.App$"/>
+            <property name="excludedClasses" value="\.Main$|\.App$|\.*Verticle$"/>
         </module>
         <module name="UpperEll"/> <!-- https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.10.1-->
 
@@ -340,9 +341,6 @@
         <property name="tabWidth" value="4"/>
         <module name="EmptyForInitializerPad"/>
         <module name="EmptyForIteratorPad"/>
-        <module name="EmptyLineSeparator">
-            <property name="allowMultipleEmptyLines" value="false"/>
-        </module>
         <module name="GenericWhitespace"/>
         <module name="MethodParamPad"/>
         <module name="NoLineWrap"/>
@@ -351,7 +349,9 @@
         <module name="NoWhitespaceBeforeCaseDefaultColon"/>
         <module name="OperatorWrap"/>
         <module name="ParenPad"/>
-        <module name="SeparatorWrap"/>
+        <module name="SeparatorWrap">
+            <property name="tokens" value="COMMA , SEMI , ELLIPSIS , LPAREN , RPAREN , ARRAY_DECLARATOR , RBRACK , METHOD_REF"/>
+        </module>
         <module name="SingleSpaceSeparator"/>
         <module name="TypecastParenPad"/>
         <module name="WhitespaceAfter">
@@ -370,11 +370,6 @@
     <!-- ===================================================================================== -->
     <!-- ==================================== Custom Rules =================================== -->
     <!-- ===================================================================================== -->
-
-    <module name="RegexpMultiline">
-        <property name="matchAcrossLines" value="true"/>
-        <property name="format" value="System\.(out)|(err)\.print(ln)?\("/>
-    </module>
 
     <module name="RegexpSingleline">
         <property name="format" value="((//.*)|(\*.*))TODO[^(]"/>

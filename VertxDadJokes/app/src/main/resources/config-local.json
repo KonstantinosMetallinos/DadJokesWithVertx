@@ -1,0 +1,8 @@
+{
+  "jokeConfig": {
+    "host": "icanhazdadjoke.com",
+    "port": 80,
+    "endpointUri": "/",
+    "jokeFrequency": "10"
+  }
+}
