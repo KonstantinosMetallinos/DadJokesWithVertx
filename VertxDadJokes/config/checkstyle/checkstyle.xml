@@ -70,6 +70,7 @@
         <module name="AvoidNoArgumentSuperConstructorCall"/>
         <module name="CovariantEquals"/>
         <module name="DeclarationOrder">
+            <property name="ignoreConstructors" value="true"/>
             <property name="ignoreModifiers" value="true"/>
         </module>
         <module name="DefaultComesLast"/>
@@ -248,9 +249,6 @@
             <property name="tokens" value="CTOR_DEF"/>
             <property name="ignorePrimitiveTypes" value="true"/>
         </module>
-        <module name="Indentation">
-            <property name="caseIndent" value="0"/>
-        </module>
         <module name="NoCodeInFile"/>
         <module name="OuterTypeFilename"/>
         <module name="TodoComment">
@@ -259,12 +257,12 @@
         <module name="TrailingComment"/>
         <module name="SuppressionXpathSingleFilter">
             <property name="checks" value="TrailingCommentCheck"/>
-            <property name="query" value="//SINGLE_LINE_COMMENT
-[./COMMENT_CONTENT[starts-with(@text, ' NOPMD')]]"/>
-            <property name="query" value="//SINGLE_LINE_COMMENT
-[./COMMENT_CONTENT[starts-with(@text, ' SUPPRESS CHECKSTYLE')]]"/>
-            <property name="query" value="//SINGLE_LINE_COMMENT
-[./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]"/>
+            <property name="query"
+                      value="//SINGLE_LINE_COMMENT [./COMMENT_CONTENT[starts-with(@text, ' NOPMD')]]"/>
+            <property name="query"
+                      value="//SINGLE_LINE_COMMENT [./COMMENT_CONTENT[starts-with(@text, ' SUPPRESS CHECKSTYLE')]]"/>
+            <property name="query"
+                      value="//SINGLE_LINE_COMMENT [./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]"/>
         </module>
         <module name="UncommentedMain">
             <!-- To configure the check to allow the main method for all classes with "Main" name:-->
@@ -297,7 +295,9 @@
             <property name="allowOneCharVarInForLoop" value="true"/>
         </module>
         <module name="MemberName"/>
-        <module name="MethodName"/>
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$|^test_[a-zA-Z0-9_]*$"/>
+        </module>
         <module name="PackageName"/>
         <module name="ParameterName">
             <property name="ignoreOverridden" value="true"/>

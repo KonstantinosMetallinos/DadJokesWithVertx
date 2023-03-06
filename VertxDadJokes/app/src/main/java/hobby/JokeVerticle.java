@@ -20,7 +20,7 @@ public class JokeVerticle extends AbstractVerticle {
 
     private final JokeConfigRecord config;
 
-    public JokeVerticle(JokeConfigRecord config) {
+    public JokeVerticle(final JokeConfigRecord config) {
         this.config = config;
     }
 
@@ -39,18 +39,18 @@ public class JokeVerticle extends AbstractVerticle {
         Future<HttpResponse<JsonObject>> future = request.send();
 
         future.onSuccess(s -> {
-                    System.out.println(future.result().body().getString("joke") + "\n🤣");
-                    System.out.println();
-                    msg.reply(0);
-                })
-                .onFailure(f -> msg.fail(1, "ERROR: Attempt to fetch Joke was unsuccessful.\n" + future.cause().getMessage()));
+                System.out.println(future.result().body().getString("joke") + "\n🤣");
+                System.out.println();
+                msg.reply(0);
+            })
+            .onFailure(f -> msg.fail(1, "ERROR: Attempt to fetch Joke was unsuccessful.\n" + future.cause().getMessage()));
     }
 
     protected void setHttpRequest(final JokeConfigRecord config) {
         request = WebClient.create(vertx)
-                .get(config.port(), config.host(), config.endpointUri())
-                .putHeader("Accept", "application/json")
-                .as(BodyCodec.jsonObject())
-                .expect(ResponsePredicate.SC_OK);
+            .get(config.port(), config.host(), config.endpointUri())
+            .putHeader("Accept", "application/json")
+            .as(BodyCodec.jsonObject())
+            .expect(ResponsePredicate.SC_OK);
     }
 }

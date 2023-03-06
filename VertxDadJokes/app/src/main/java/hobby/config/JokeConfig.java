@@ -8,10 +8,10 @@ import java.util.concurrent.TimeUnit;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "host",
-        "port",
-        "endpointUri",
-        "jokeFrequency"
+    "host",
+    "port",
+    "endpointUri",
+    "jokeFrequency"
 })
 public class JokeConfig {
 
@@ -24,9 +24,7 @@ public class JokeConfig {
     @JsonProperty("jokeFrequency")
     private long jokeFrequency;
 
-    public JokeConfig() {
-
-    }
+    public JokeConfig() { }
 
     public JokeConfig(final String host, final int port, final String endpointUri, final long jokeFrequency) {
         if (port < 0) {
