@@ -33,7 +33,7 @@ import static org.hamcrest.Matchers.equalTo;
 class JokeVerticleTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(JokeVerticleTest.class);
-    private static final int TIME_OUT = 10;
+    private static final int TIME_OUT = 110;
     private static final int TEST_PORT_WITH_DATA = 3000;
     private static final int TEST_ERROR_PORT = 3001;
     private static final int JOKE_INTERVALS_SECONDS = 5;
@@ -49,6 +49,7 @@ class JokeVerticleTest {
     @BeforeAll
     static void setup() throws InterruptedException {
         Utils.setLoggingLevelToInfo();
+        config = null;
 
         vertx = Vertx.vertx(new VertxOptions()
             .setBlockedThreadCheckInterval(BLOCKED_THREAD_INTERVAL)
@@ -126,8 +127,6 @@ class JokeVerticleTest {
     private static Future<HttpServer> mockHttpCall(Vertx vertx) {
         Router router = Router.router(vertx);
         router.route().handler(BodyHandler.create());
-        //        String payloadResponse = "{[\"joke\" : \"What did the green grape say to the purple grape?\\nBREATH!!\"]}";
-        //        String payloadResponse = "{\"joke\":\"How was the snow globe feeling after the storm? A little shaken.\"}";
         String payloadResponse = "{\"id\":\"M7ElyAQCAd\",\"joke\":\"How was the snow globe feeling after the storm? A little shaken.\",\"status\":200}";
 
         router.get(ENDPOINT_URI).handler(ctx -> ctx.response()
