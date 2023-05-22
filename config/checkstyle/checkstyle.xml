@@ -198,7 +198,7 @@
             <property name="ignoreMethodNamesRegex"
                       value="main|build|builder|hashCode|equals|toString|get|get[A-Z](.*)|is|is[A-Z](.*)|has|has[A-Z](.*)|set|set[A-Z](.*)|add|add[A-Z](.*)|remove|remove[A-Z](.*)"/>
             <property name="allowedAnnotations"
-                      value="Override, Bean, Test, Mock, Before, After, Before, BeforeAll, AfterAll, BeforeEach, AfterEach, Class, AfterClass"/>
+                      value="Override, Bean, Test, Mock, Before, After, BeforeAll, AfterAll, BeforeEach, AfterEach, Class, AfterClass"/>
             <property name="tokens" value="METHOD_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"/>
         </module>
         <module name="NonEmptyAtclauseDescription"/>
